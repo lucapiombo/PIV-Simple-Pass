@@ -2,14 +2,14 @@ clear
 close all
 clc
 
-suffix = "12";
+suffix = "9";
 
 tic
 %% Pre-processing per calibrazione
 
 % Carica immagini readB16
-imag1 = readB16("Calib\Cam1\Cam1_0001.b16");
-imag2 = readB16("Calib\Cam2\Cam2_0001.b16");
+imag1 = readB16("test\Calib\Cam1\Cam1_0001.b16");
+imag2 = readB16("test\Calib\Cam2\Cam2_0001.b16");
 
 % Conversione in double e aumento contrasto
 imag1_normalized = mat2gray(imag1); % essendo di tipo double vado a normalizzare tra 0 e 1 per applicare histeq
@@ -88,11 +88,11 @@ parfor k = 1: 50
 
     %Load images
     if k < 10
-        file1A = strcat("Gruppo4\"+suffix+"ms\Cam1\Cam1_000", num2str(k, '%d'), "A.b16");
-        file1B = strcat("Gruppo4\"+suffix+"ms\Cam1\Cam1_000", num2str(k, '%d'), "B.b16");
+        file1A = strcat("test\"+suffix+"ms\Cam1\Cam1_000", num2str(k, '%d'), "A.b16");
+        file1B = strcat("test\"+suffix+"ms\Cam1\Cam1_000", num2str(k, '%d'), "B.b16");
     else 
-        file1A = strcat("Gruppo4\"+suffix+"ms\Cam1\Cam1_00", num2str(k, '%d'), "A.b16");
-        file1B = strcat("Gruppo4\"+suffix+"ms\Cam1\Cam1_00", num2str(k, '%d'), "B.b16"); 
+        file1A = strcat("test\"+suffix+"ms\Cam1\Cam1_00", num2str(k, '%d'), "A.b16");
+        file1B = strcat("test\"+suffix+"ms\Cam1\Cam1_00", num2str(k, '%d'), "B.b16"); 
     end
 
     % Pre-processing
@@ -101,11 +101,11 @@ parfor k = 1: 50
     
 
     if k<10
-        file2A = strcat("Gruppo4\"+suffix+"ms\Cam2\Cam2_000", num2str(k, '%d'), "A.b16");
-        file2B = strcat("Gruppo4\"+suffix+"ms\Cam2\Cam2_000", num2str(k, '%d'), "B.b16");
+        file2A = strcat("test\"+suffix+"ms\Cam2\Cam2_000", num2str(k, '%d'), "A.b16");
+        file2B = strcat("test\"+suffix+"ms\Cam2\Cam2_000", num2str(k, '%d'), "B.b16");
     else 
-        file2A = strcat("Gruppo4\"+suffix+"ms\Cam2\Cam2_00", num2str(k, '%d'), "A.b16");
-        file2B = strcat("Gruppo4\"+suffix+"ms\Cam2\Cam2_00", num2str(k, '%d'), "B.b16"); 
+        file2A = strcat("test\"+suffix+"ms\Cam2\Cam2_00", num2str(k, '%d'), "A.b16");
+        file2B = strcat("test\"+suffix+"ms\Cam2\Cam2_00", num2str(k, '%d'), "B.b16"); 
     end
     
     % Pre-processing
@@ -172,8 +172,8 @@ vorticity1 = dv_dx - du_dy; % Formula per la componente z della vorticità non f
 vorticity2 = dV_dx - dU_dy;% Formula per la componente z della vorticità filtered 
 
 % Get the filterd and maskered image
-file1 = strcat("Gruppo4\"+suffix+"ms\Cam1\Cam1_0001A.b16");
-file2 = strcat("Gruppo4\"+suffix+"ms\Cam2\Cam2_0001A.b16");
+file1 = strcat("test\"+suffix+"ms\Cam1\Cam1_0001A.b16");
+file2 = strcat("test\"+suffix+"ms\Cam2\Cam2_0001A.b16");
 imagCam1_filtered = filter_image(file1, [0.001 0.05]);
 imagCam2_filtered = filter_image(file2, [0.01 0.45]);
 image_filtered = [imagCam2_filtered, imagCam1_filtered];
@@ -192,7 +192,7 @@ set(gca, 'YDir', 'reverse');
 xlabel('X (pixel)')
 ylabel('Y (pixel)')
 hold off
-saveas(gca, strcat(strcat('post/Gruppo4/Quiver_UV_', suffix),'.svg'),'svg')
+%saveas(gca, strcat(strcat('post/Gruppo4/Quiver_UV_', suffix),'.svg'),'svg')
 
 % Campo di velocità U-component
 figure
@@ -202,7 +202,7 @@ imagesc(meanU)
 colormap("jet")
 colorbar()
 clim([-10 10])
-saveas(gca, strcat(strcat('post/Gruppo4/U_component-field_', suffix),'.svg'),'svg')
+%saveas(gca, strcat(strcat('post/Gruppo4/U_component-field_', suffix),'.svg'),'svg')
 
 % Campo di velocità V-component
 figure
@@ -212,7 +212,7 @@ imagesc(meanV)
 colormap("jet")
 colorbar()
 clim([-10 10])
-saveas(gca, strcat(strcat('post/Gruppo4/V_component-field_', suffix),'.svg'),'svg')
+%saveas(gca, strcat(strcat('post/Gruppo4/V_component-field_', suffix),'.svg'),'svg')
 
 % Campo di veloictà
 figure()
@@ -230,7 +230,7 @@ set(gca, 'YDir', 'reverse'); % Reverse y-axis for correct visualization
 xlabel('X (pixel)')
 ylabel('Y (pixel)')
 hold off
-saveas(gca, strcat(strcat('post/Gruppo4/Velocity_fieldANDStramlines_', suffix),'.svg'),'svg')
+%saveas(gca, strcat(strcat('post/Gruppo4/Velocity_fieldANDStramlines_', suffix),'.svg'),'svg')
 
 % Campo di vorticità
 figure()
@@ -243,6 +243,6 @@ clim([-6 6])
 set(gca, 'YDir', 'reverse')
 xlabel('X (pixel)')
 ylabel('Y (pixel)')
-saveas(gca, strcat(strcat('post/Gruppo4/Vorticity_', suffix),'.svg'),'svg')
+%saveas(gca, strcat(strcat('post/Gruppo4/Vorticity_', suffix),'.svg'),'svg')
 
 toc
