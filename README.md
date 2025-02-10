@@ -14,3 +14,5 @@ Plotting: Plots the processed results.
 ##Notes
 This code was developed for a university project and is not fully optimized. To adapt it to your specific needs, you must specify the calibration image path and the images to be processed directly within the script.
 Furthermore an example of calibrarion is provided into [Calibration](/test/Calib) and one with a set of images to use is inside [Images](/test/9ms). The test represent a two camera setup for analyzing a vortex-ring-state behavior of a rotor.
+
+To improve the fastness of the script the parallel toolbox (form Mathworks) has been used implementing the for-loop as a parfor-loop.
