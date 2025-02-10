@@ -13,3 +13,4 @@ Plotting: Plots the processed results.
 
 ##Notes
 This code was developed for a university project and is not fully optimized. To adapt it to your specific needs, you must specify the calibration image path and the images to be processed directly within the script.
+Furthermore an example is provided into [test](/test/Big_images/9ms).
