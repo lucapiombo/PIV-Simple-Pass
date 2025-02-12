@@ -84,7 +84,7 @@ mask = importdata('mask_oveall');
 %% Cilco PIV immagini
 %barra = waitbar(0, 'Processing, please wait...');
 
-parfor k = 1: 50
+parfor k = 1: 10
 
     %Load images
     if k < 10
